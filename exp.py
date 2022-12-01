@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from django.core.signing import loads, dumps, BadSignature
 from django.contrib.sessions import serializers
-from empty import banner
+from settings import banner
 
 # Clean the terminal, cmd and print the banner
 os.system("cls") if os.name == "nt" else os.system("clear")
