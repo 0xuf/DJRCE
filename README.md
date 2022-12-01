@@ -13,6 +13,7 @@
 ```bash
 git clone https://github.com/0xuf/DJRCE.git
 cd DJRCE
+python -m pip install -r requirements.txt
 ```
 ```
 Rename .env.example to .env .
